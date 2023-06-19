@@ -21,6 +21,7 @@ object Dependency {
         const val COMPOSE_UI_PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE}"
         const val COMPOSE_MATERAIL =
             "androidx.compose.material:material:${Versions.COMPOSE_MATERIAL}"
+        const val NAVIGATION = "androidx.navigation:navigation-compose:${Versions.NAVIGATION}"
     }
 
     object Libraries {

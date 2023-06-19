@@ -60,6 +60,7 @@ dependencies {
     implementation(Dependency.Compose.COMPOSE_UI)
     implementation(Dependency.Compose.COMPOSE_UI_PREVIEW)
     implementation(Dependency.Compose.COMPOSE_MATERAIL)
+    implementation(Dependency.Compose.NAVIGATION)
     implementation(Dependency.AndroidX.LIFECYCLE_VIEWMODEL_KTX)
     testImplementation(Dependency.Test.JUNIT)
     androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
