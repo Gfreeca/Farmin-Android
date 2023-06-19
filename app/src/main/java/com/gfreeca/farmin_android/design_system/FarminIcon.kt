@@ -7,12 +7,23 @@ import androidx.compose.ui.res.painterResource
 import com.gfreeca.farmin_android.R
 
 @Composable
-fun FraminLogoIcon(
+fun FarminLogoIcon(
     modifier: Modifier = Modifier
 ) {
     Image(
         painter = painterResource(id = R.drawable.ic_farmin_logo),
         contentDescription = "Farmin Logo Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun LogoTextIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_logo_text),
+        contentDescription = "Logo Text Icon",
         modifier = modifier
     )
 }
