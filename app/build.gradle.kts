@@ -1,6 +1,7 @@
 plugins {
     id(Dependency.Plugins.APPLICATION)
     id(Dependency.Plugins.KOTLIN)
+    kotlin(Dependency.Plugins.KAPT)
 }
 
 @Suppress("UnstableApiUsage")
@@ -64,4 +65,14 @@ dependencies {
     androidTestImplementation(Dependency.Test.COMPOSE_TEST)
     debugImplementation(Dependency.Debug.COMPOSE_TOOLING)
     debugImplementation(Dependency.Debug.COMPOSE_MANIFEST)
+
+    //Hilt
+    implementation(Dependency.Google.HILT)
+    kapt(Dependency.Google.HILT_COMPILER)
+
+    //Retrofit
+    implementation(Dependency.Libraries.RETROFIT)
+    implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)
+    implementation(Dependency.Libraries.OKHTTP)
+    implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
 }
