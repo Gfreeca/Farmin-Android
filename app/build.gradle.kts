@@ -1,6 +1,7 @@
 plugins {
     id(Dependency.Plugins.APPLICATION)
     id(Dependency.Plugins.KOTLIN)
+    id(Dependency.Plugins.HILT_PLUGIN)
     kotlin(Dependency.Plugins.KAPT)
 }
 
@@ -59,6 +60,7 @@ dependencies {
     implementation(Dependency.Compose.COMPOSE_UI)
     implementation(Dependency.Compose.COMPOSE_UI_PREVIEW)
     implementation(Dependency.Compose.COMPOSE_MATERAIL)
+    implementation(Dependency.AndroidX.LIFECYCLE_VIEWMODEL_KTX)
     testImplementation(Dependency.Test.JUNIT)
     androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
     androidTestImplementation(Dependency.Test.ESPRESSO)
