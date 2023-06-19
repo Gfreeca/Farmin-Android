@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Farmin-Android"
-include ':app'
+include(":app")
