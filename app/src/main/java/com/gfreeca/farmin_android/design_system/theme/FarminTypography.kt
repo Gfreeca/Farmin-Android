@@ -23,65 +23,65 @@ object FarminTypography {
     )
 
     @Stable
-    val headline1 = TextStyle(
-        fontFamily = pretendard,
-        fontSize = 40.sp,
-        lineHeight = 48.sp,
-    )
-
-    @Stable
-    val headline2 = TextStyle(
-        fontFamily = pretendard,
-        fontSize = 32.sp,
-        lineHeight = 38.sp,
-    )
-
-    @Stable
-    val headline3 = TextStyle(
-        fontFamily = pretendard,
-        fontSize = 28.sp,
-        lineHeight = 34.sp,
-    )
-
-    @Stable
     val title1 = TextStyle(
+        fontFamily = pretendard,
+        fontSize = 24.sp,
+        lineHeight = 28.8.sp,
+    )
+
+    @Stable
+    val title2 = TextStyle(
         fontFamily = pretendard,
         fontSize = 20.sp,
         lineHeight = 24.sp,
     )
 
     @Stable
-    val title2 = TextStyle(
+    val title3 = TextStyle(
         fontFamily = pretendard,
-        fontSize = 17.sp,
-        lineHeight = 21.sp,
+        fontSize = 18.sp,
+        lineHeight = 21.6.sp,
+    )
+
+    @Stable
+    val subtitle = TextStyle(
+        fontFamily = pretendard,
+        fontSize = 16.sp,
+        lineHeight = 19.2.sp,
     )
 
     @Stable
     val body1 = TextStyle(
         fontFamily = pretendard,
-        fontSize = 15.sp,
-        lineHeight = 21.sp,
+        fontSize = 16.sp,
+        lineHeight = 22.4.sp,
     )
 
     @Stable
     val body2 = TextStyle(
         fontFamily = pretendard,
         fontSize = 14.sp,
-        lineHeight = 20.sp,
+        lineHeight = 19.6.sp,
     )
 
     @Stable
-    val caption1 = TextStyle(
+    val label1 = TextStyle(
         fontFamily = pretendard,
         fontSize = 13.sp,
-        lineHeight = 19.sp,
+        lineHeight = 15.6.sp,
     )
 
     @Stable
-    val caption2 = TextStyle(
+    val label2 = TextStyle(
         fontFamily = pretendard,
         fontSize = 12.sp,
-        lineHeight = 17.sp,
+        lineHeight = 14.4.sp,
+    )
+
+    @Stable
+    val caption = TextStyle(
+        fontFamily = pretendard,
+        fontSize = 11.sp,
+        lineHeight = 15.6.sp,
     )
 }

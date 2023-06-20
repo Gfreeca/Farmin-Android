@@ -25,10 +25,10 @@ fun MainListHeader(onSeeMoreButtonClick: () -> Unit) {
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "\uD83E\uDDD1\u200D\uD83C\uDF3E 주변에 이런 농장 알바가 있어요.",
-                style = typography.caption1,
+                text = "주변에 이런 농장 알바가 있어요.",
+                style = typography.title3,
                 color = colors.BLACK,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight(700),
                 modifier = Modifier.align(Alignment.CenterStart)
             )
             Row(
@@ -37,7 +37,12 @@ fun MainListHeader(onSeeMoreButtonClick: () -> Unit) {
                     .clickable(onClick = onSeeMoreButtonClick),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "더보기", color = colors.GRAY600)
+                Text(
+                    text = "더보기",
+                    style = typography.body2,
+                    color = colors.GRAY600,
+                    fontWeight = FontWeight(500)
+                )
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow),
                     contentDescription = "Arrow Icon"
