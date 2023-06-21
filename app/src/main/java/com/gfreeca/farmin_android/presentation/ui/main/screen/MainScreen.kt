@@ -32,7 +32,7 @@ fun MainScreen(
         }
         MainPager(pagerState = pagerState)
         Spacer(modifier = Modifier.height(24.dp))
-        MainHeader("\u200D \uD83E\uDD14 농장 알바는 뭘 할까요?") {
+        MainHeader("\uD83E\uDDD1\u200D\uD83C\uDF3E 주변에 이런 농장 알바가 있어요. ") {
             //Todo : 공고 페이지로 이동
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -49,6 +49,7 @@ fun MainScreen(
         MainHeader("\uD83D\uDCD1 농촌을 위한 이런 지원과 \n정책들이 있어요. ") {
             //Todo : 지원과 정책 보러가기
         }
-
+        Spacer(modifier = Modifier.height(16.dp))
+        MainPolicyList()
     }
 }
