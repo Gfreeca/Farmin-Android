@@ -22,8 +22,7 @@ fun ListItem(
     title: String,
     description: String,
     salary: String,
-    area: String,
-    variety: String
+    area: String
 ) {
     FarminTheme { colors, typography ->
         Column(modifier = Modifier
