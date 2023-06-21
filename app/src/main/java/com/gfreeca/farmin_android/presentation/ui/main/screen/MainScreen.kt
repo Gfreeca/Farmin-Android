@@ -27,7 +27,7 @@ fun MainScreen(
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        MainHeader("\uD83E\uDDD1\u200D\uD83C\uDF3E 주변에 이런 농장 알바가 있어요. ") {
+        MainTopBar {
             //Todo : 프로필 페이지로 이동
         }
         MainPager(pagerState = pagerState)
@@ -44,7 +44,11 @@ fun MainScreen(
         }
         Spacer(modifier = Modifier.height(18.dp))
         MainVideoList()
+        FarminSpacer()
         Spacer(modifier = Modifier.height(24.dp))
+        MainHeader("\uD83D\uDCD1 농촌을 위한 이런 지원과 \n정책들이 있어요. ") {
+            //Todo : 지원과 정책 보러가기
+        }
 
     }
 }

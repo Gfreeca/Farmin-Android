@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -35,15 +36,15 @@ fun MainPager(pagerState: PagerState) {
                 count = 3,
                 state = pagerState,
                 modifier = Modifier
-                    .height(200.dp)
+                    .height(190.dp)
                     .fillMaxWidth()
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.banner),
                     contentDescription = "Banner Image",
                     modifier = Modifier
-                        .height(200.dp)
-                        .fillMaxWidth()
+                        .fillMaxSize(),
+                    contentScale = ContentScale.FillBounds
                 )
             }
             Column(modifier = Modifier.align(Alignment.BottomCenter)) {
