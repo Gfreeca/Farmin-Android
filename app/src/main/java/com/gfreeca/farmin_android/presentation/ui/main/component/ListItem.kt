@@ -39,7 +39,21 @@ fun ListItem(
                     .aspectRatio(1f)
                     .clip(RoundedCornerShape(10.dp))
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(R.drawable.ic_map_pointer),
+                    contentDescription = "Map Pointer Icon"
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = area,
+                    style = typography.label2,
+                    color = colors.GRAY800,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = title,
                 modifier = Modifier.fillMaxWidth(),
@@ -67,31 +81,6 @@ fun ListItem(
                 color = colors.GRAY800
             )
             Spacer(modifier = Modifier.height(12.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(R.drawable.ic_map_pointer),
-                    contentDescription = "Map Pointer Icon"
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = area,
-                    style = typography.label2,
-                    color = colors.GRAY800,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Image(
-                    painter = painterResource(R.drawable.ic_grass),
-                    contentDescription = "Grass Icon"
-                )
-                Spacer(modifier = Modifier.width(2.dp))
-                Text(
-                    text = variety,
-                    style = typography.label2,
-                    color = colors.GRAY800,
-                    fontWeight = FontWeight.SemiBold
-                )
-            }
         }
     }
 }
