@@ -11,7 +11,9 @@ import com.gfreeca.farmin_android.design_system.LogoTextIcon
 import com.gfreeca.farmin_android.design_system.ProfileIcon
 
 @Composable
-fun MainTopBar(onProfileButtonClick: () -> Unit) {
+fun MainTopBar(
+    onProfileButtonClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .padding(vertical = 13.dp)
