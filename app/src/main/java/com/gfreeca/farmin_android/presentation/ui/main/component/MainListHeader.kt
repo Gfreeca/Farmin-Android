@@ -17,7 +17,10 @@ import com.gfreeca.farmin_android.R
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 
 @Composable
-fun MainListHeader(onSeeMoreButtonClick: () -> Unit) {
+fun MainHeader(
+    text: String,
+    onSeeMoreButtonClick: () -> Unit
+) {
     FarminTheme { colors, typography ->
         Box(
             modifier = Modifier
@@ -25,7 +28,7 @@ fun MainListHeader(onSeeMoreButtonClick: () -> Unit) {
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "주변에 이런 농장 알바가 있어요.",
+                text = text,
                 style = typography.title3,
                 color = colors.BLACK,
                 fontWeight = FontWeight(700),

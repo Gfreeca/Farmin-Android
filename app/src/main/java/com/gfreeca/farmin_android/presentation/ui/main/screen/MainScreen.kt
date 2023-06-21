@@ -27,12 +27,12 @@ fun MainScreen(
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        MainTopBar {
+        MainHeader("\uD83E\uDDD1\u200D\uD83C\uDF3E 주변에 이런 농장 알바가 있어요. ") {
             //Todo : 프로필 페이지로 이동
         }
         MainPager(pagerState = pagerState)
         Spacer(modifier = Modifier.height(24.dp))
-        MainListHeader {
+        MainHeader("\u200D \uD83E\uDD14 농장 알바는 뭘 할까요?") {
             //Todo : 공고 페이지로 이동
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -44,5 +44,7 @@ fun MainScreen(
         }
         Spacer(modifier = Modifier.height(18.dp))
         MainVideoList()
+        Spacer(modifier = Modifier.height(24.dp))
+
     }
 }
