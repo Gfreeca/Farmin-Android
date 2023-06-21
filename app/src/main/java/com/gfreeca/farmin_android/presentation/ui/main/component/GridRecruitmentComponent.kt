@@ -28,8 +28,7 @@ fun GridRecruitmentComponent() {
                 title = "충주 사과 따기 모집",
                 description = "지빈이네 사과 농장",
                 salary = "10,000",
-                area = "충주",
-                variety = "사과"
+                area = "충주"
             )
         }
     }

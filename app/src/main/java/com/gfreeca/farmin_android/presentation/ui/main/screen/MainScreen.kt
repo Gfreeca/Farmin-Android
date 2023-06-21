@@ -2,7 +2,6 @@ package com.gfreeca.farmin_android.presentation.ui.main.screen
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,24 +43,6 @@ fun MainScreen(
             //Todo : 유튭으로 이동
         }
         Spacer(modifier = Modifier.height(18.dp))
-        LazyRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-        ) {
-            item {
-                Spacer(modifier = Modifier.width(16.dp))
-            }
-            items(4) {
-                MainVideoListItem(
-                    thumbnailImageUrl = "",
-                    title = "$it 번 동영상",
-                    hits = "100만",
-                    timeSinceLaunch = "1일",
-                    userName = "김현승"
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-            }
-        }
+        MainVideoList()
     }
 }
