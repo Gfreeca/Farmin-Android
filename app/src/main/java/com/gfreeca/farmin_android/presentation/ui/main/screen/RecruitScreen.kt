@@ -3,7 +3,8 @@ package com.gfreeca.farmin_android.presentation.ui.main.screen
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -14,8 +15,20 @@ import com.gfreeca.farmin_android.presentation.ui.main.component.RecruitTopBar
 fun RecruitScreen(
     navController: NavController
 ) {
+    val listState = rememberLazyGridState()
+    val isScrolled = remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect("isScrolled") {
+        snapshotFlow { listState.layoutInfo.visibleItemsInfo.first().index != 0 }.collect {
+            if (isScrolled.value != it) isScrolled.value = it
+        }
+    }
+
     Column(modifier = Modifier.fillMaxSize()) {
         RecruitTopBar(
+            isScrolled = isScrolled.value,
             onSearchButtonClick = {
 
             },
@@ -28,8 +41,12 @@ fun RecruitScreen(
                 .fillMaxSize()
                 .padding(horizontal = 16.dp),
             columns = GridCells.Adaptive(minSize = 120.dp),
-            horizontalArrangement = Arrangement.spacedBy(15.dp)
+            horizontalArrangement = Arrangement.spacedBy(15.dp),
+            state = listState
         ) {
+            item { 
+                Spacer(modifier = Modifier.height(17.dp))
+            }
             items(8) {
                 ListItem(
                     imageUrl = "",
