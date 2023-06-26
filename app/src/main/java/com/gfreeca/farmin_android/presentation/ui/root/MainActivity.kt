@@ -19,6 +19,7 @@ import com.gfreeca.farmin_android.presentation.ui.main.component.Screen
 import com.gfreeca.farmin_android.presentation.ui.main.screen.MainScreen
 import com.gfreeca.farmin_android.presentation.ui.main.screen.RecruitScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
