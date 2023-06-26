@@ -56,18 +56,14 @@ class MainActivity : ComponentActivity() {
                                 iconId = R.drawable.ic_navigation_home,
                                 text = "홈"
                             ) {
-                                navController.navigate("Main") {
-                                    launchSingleTop = true
-                                }
+                                navController.navigate("Main")
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_recruit,
                                 text = "농장 알바"
                             ) {
-                                navController.navigate("Recruit") {
-                                    launchSingleTop = true
-                                }
+                                navController.navigate("Recruit")
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
@@ -91,6 +87,7 @@ class MainActivity : ComponentActivity() {
 
                             }
                         }
+                        Spacer(modifier = Modifier.height(7.dp))
                     }
                 }
             }
