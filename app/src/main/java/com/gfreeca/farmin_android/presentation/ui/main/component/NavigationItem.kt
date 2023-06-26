@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 
 @Composable
-fun NavigationItem(iconId: Int, text: String, onClick: () -> Unit) {
+fun NavigationItem(iconId: Int, text: String, isCurrentPage: Boolean, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .width(45.dp)
@@ -33,7 +33,7 @@ fun NavigationItem(iconId: Int, text: String, onClick: () -> Unit) {
                 text = text,
                 style = typography.caption,
                 fontWeight = FontWeight.Medium,
-                color = colors.GRAY600
+                color = if (isCurrentPage) colors.BLACK else colors.GRAY600
             )
         }
     }

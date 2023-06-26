@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -25,6 +27,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
+            val currentIsHome = remember {
+                mutableStateOf(true)
+            }
+            val currentIsRecruit = remember {
+                mutableStateOf(false)
+            }
+            val currentIsFestival = remember {
+                mutableStateOf(false)
+            }
+            val currentIsPolicy = remember {
+                mutableStateOf(false)
+            }
+            val currentIsMyPage = remember {
+                mutableStateOf(false)
+            }
+
             Box(modifier = Modifier.fillMaxSize()) {
                 NavHost(
                     navController = navController,
@@ -54,35 +72,52 @@ class MainActivity : ComponentActivity() {
                         ) {
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_home,
-                                text = "홈"
+                                text = "홈",
+                                isCurrentPage = currentIsHome.value
                             ) {
+                                currentIsHome.value = true
+                                currentIsRecruit.value = false
+                                currentIsFestival.value = false
+                                currentIsPolicy.value = false
+                                currentIsMyPage.value = false
+
                                 navController.navigate("Main")
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_recruit,
-                                text = "농장 알바"
+                                text = "농장 알바",
+                                isCurrentPage = currentIsRecruit.value
                             ) {
+                                currentIsHome.value = false
+                                currentIsRecruit.value = true
+                                currentIsFestival.value = false
+                                currentIsPolicy.value = false
+                                currentIsMyPage.value = false
+
                                 navController.navigate("Recruit")
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_festival,
-                                text = "지역축제"
+                                text = "지역축제",
+                                isCurrentPage = currentIsFestival.value
                             ) {
 
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_policy,
-                                text = "지원사업"
+                                text = "지원사업",
+                                isCurrentPage = currentIsPolicy.value
                             ) {
 
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_profile,
-                                text = "My페이지"
+                                text = "My페이지",
+                                isCurrentPage = currentIsMyPage.value
                             ) {
 
                             }
