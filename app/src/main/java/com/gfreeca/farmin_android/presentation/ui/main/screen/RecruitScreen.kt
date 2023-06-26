@@ -44,9 +44,6 @@ fun RecruitScreen(
             horizontalArrangement = Arrangement.spacedBy(15.dp),
             state = listState
         ) {
-            item { 
-                Spacer(modifier = Modifier.height(17.dp))
-            }
             items(8) {
                 ListItem(
                     imageUrl = "",
