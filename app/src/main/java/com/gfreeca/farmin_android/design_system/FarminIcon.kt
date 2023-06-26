@@ -38,3 +38,36 @@ fun ProfileIcon(
         modifier = modifier
     )
 }
+
+@Composable
+fun GrayLogoIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_gray_logo),
+        contentDescription = "Gray Logo Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun GrayMapPointerIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_gray_map_pointer),
+        contentDescription = "Gray Map Pointer Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun GraySearchIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_gray_search),
+        contentDescription = "Gray Search Icon",
+        modifier = modifier
+    )
+}

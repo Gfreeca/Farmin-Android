@@ -24,9 +24,7 @@ fun MainScreen(
 
     FarminTheme { colors, _ ->
         Column(Modifier.fillMaxSize()) {
-            MainTopBar {
-                //Todo : 프로필 페이지로 이동
-            }
+            MainTopBar()
             Divider(color = colors.GRAY200)
             Column(
                 modifier = Modifier

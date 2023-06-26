@@ -16,6 +16,7 @@ import com.gfreeca.farmin_android.R
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 import com.gfreeca.farmin_android.presentation.ui.main.component.NavigationItem
 import com.gfreeca.farmin_android.presentation.ui.main.screen.MainScreen
+import com.gfreeca.farmin_android.presentation.ui.main.screen.RecruitScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +34,10 @@ class MainActivity : ComponentActivity() {
                     composable(route = "Main") {
                         MainScreen(navController = navController)
                     }
+
+                    composable(route = "Recruit") {
+                        RecruitScreen(navController = navController)
+                    }
                 }
                 FarminTheme { colors, _ ->
                     Column(
@@ -47,15 +52,18 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center
                         ) {
-                            NavigationItem(iconId = R.drawable.ic_navigation_home, text = "홈") {
-
+                            NavigationItem(
+                                iconId = R.drawable.ic_navigation_home,
+                                text = "홈"
+                            ) {
+                                navController.navigate("Main")
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
                                 iconId = R.drawable.ic_navigation_recruit,
                                 text = "농장 알바"
                             ) {
-
+                                navController.navigate("Recruit")
                             }
                             Spacer(modifier = Modifier.width(19.25.dp))
                             NavigationItem(
