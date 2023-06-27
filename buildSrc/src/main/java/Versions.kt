@@ -28,4 +28,5 @@ object Versions {
     const val NAVIGATION = "2.5.3"
 
     const val COIL = "2.4.0"
+    const val PAGER = "0.19.0"
 }
