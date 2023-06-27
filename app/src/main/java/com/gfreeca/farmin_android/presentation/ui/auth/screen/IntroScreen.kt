@@ -36,11 +36,11 @@ fun IntroScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 SignUpButton {
-
+                    //TODO: 회원가입 페이지로 이동
                 }
                 Spacer(modifier = Modifier.height(24.dp))
                 SignInButton {
-
+                    navController.navigate("signin")
                 }
                 Spacer(modifier = Modifier.height(24.dp))
             }

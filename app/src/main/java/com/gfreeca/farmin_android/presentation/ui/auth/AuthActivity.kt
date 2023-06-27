@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gfreeca.farmin_android.presentation.ui.auth.screen.IntroScreen
+import com.gfreeca.farmin_android.presentation.ui.auth.screen.SignInScreen
 import com.gfreeca.farmin_android.presentation.ui.auth.screen.SplashScreen
 
 class AuthActivity : ComponentActivity() {
@@ -25,6 +26,10 @@ class AuthActivity : ComponentActivity() {
 
                 composable(route = "intro") {
                     IntroScreen(navController = navController)
+                }
+
+                composable(route = "signin") {
+                    SignInScreen(navController = navController)
                 }
             }
         }
