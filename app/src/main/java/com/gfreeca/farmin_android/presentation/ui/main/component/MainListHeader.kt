@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.gfreeca.farmin_android.R
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
@@ -31,7 +30,6 @@ fun MainHeader(
                 text = text,
                 style = typography.title3,
                 color = colors.BLACK,
-                fontWeight = FontWeight(700),
                 modifier = Modifier.align(Alignment.CenterStart)
             )
             Row(
@@ -43,8 +41,7 @@ fun MainHeader(
                 Text(
                     text = "더보기",
                     style = typography.body2,
-                    color = colors.GRAY600,
-                    fontWeight = FontWeight(500)
+                    color = colors.GRAY600
                 )
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow),

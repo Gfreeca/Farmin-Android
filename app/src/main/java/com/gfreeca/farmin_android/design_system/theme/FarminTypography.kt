@@ -23,10 +23,19 @@ object FarminTypography {
     )
 
     @Stable
+    val h1 = TextStyle(
+        fontFamily = pretendard,
+        fontSize = 32.sp,
+        lineHeight = 38.4.sp,
+        fontWeight = FontWeight.Bold
+    )
+
+    @Stable
     val title1 = TextStyle(
         fontFamily = pretendard,
         fontSize = 24.sp,
         lineHeight = 28.8.sp,
+        fontWeight = FontWeight.Bold
     )
 
     @Stable
@@ -34,6 +43,7 @@ object FarminTypography {
         fontFamily = pretendard,
         fontSize = 20.sp,
         lineHeight = 24.sp,
+        fontWeight = FontWeight.Bold
     )
 
     @Stable
@@ -41,6 +51,7 @@ object FarminTypography {
         fontFamily = pretendard,
         fontSize = 18.sp,
         lineHeight = 21.6.sp,
+        fontWeight = FontWeight.Bold
     )
 
     @Stable
@@ -55,6 +66,7 @@ object FarminTypography {
         fontFamily = pretendard,
         fontSize = 16.sp,
         lineHeight = 22.4.sp,
+        fontWeight = FontWeight.Medium
     )
 
     @Stable
@@ -62,6 +74,7 @@ object FarminTypography {
         fontFamily = pretendard,
         fontSize = 14.sp,
         lineHeight = 19.6.sp,
+        fontWeight = FontWeight.Medium
     )
 
     @Stable
