@@ -71,3 +71,14 @@ fun GraySearchIcon(
         modifier = modifier
     )
 }
+
+@Composable
+fun ArrowBackIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_arrow_back),
+        contentDescription = "Arrow Back Icon",
+        modifier = modifier
+    )
+}

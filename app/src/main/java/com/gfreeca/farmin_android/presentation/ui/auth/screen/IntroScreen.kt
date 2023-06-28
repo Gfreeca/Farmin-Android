@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 import com.gfreeca.farmin_android.presentation.ui.auth.component.SignInButton
-import com.gfreeca.farmin_android.presentation.ui.auth.component.SignUpButton
+import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminButton
 
 @Composable
 fun IntroScreen(navController: NavController) {
@@ -35,7 +35,7 @@ fun IntroScreen(navController: NavController) {
                     .fillMaxWidth(0.9f),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                SignUpButton {
+                FarminButton(text = "시작하기") {
                     //TODO: 회원가입 페이지로 이동
                 }
                 Spacer(modifier = Modifier.height(24.dp))
