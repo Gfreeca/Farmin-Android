@@ -17,6 +17,6 @@ class AuthRepositoryImpl @Inject constructor(
                 id = body.id,
                 password = body.password
             )
-        ).body()!!.toModel()
+        ).toModel()
     }
 }
