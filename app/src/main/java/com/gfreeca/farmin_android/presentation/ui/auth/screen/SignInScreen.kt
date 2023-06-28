@@ -18,9 +18,13 @@ import com.gfreeca.farmin_android.design_system.ArrowBackIcon
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminButton
 import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminTextField
+import com.gfreeca.farmin_android.presentation.viewmodel.AuthViewModel
 
 @Composable
-fun SignInScreen(navController: NavController) {
+fun SignInScreen(
+    navController: NavController,
+    viewModel: AuthViewModel
+) {
     val id = remember {
         mutableStateOf("")
     }
@@ -97,7 +101,12 @@ fun SignInScreen(navController: NavController) {
             }
             Column(modifier = Modifier.align(Alignment.BottomCenter)) {
                 FarminButton(text = "로그인") {
-
+                    if (id.value.isBlank() && password.value.isBlank()) {
+                        isError.value = true
+                        errorMsg.value = "아이디 및 비밀번호를 입력해주세요."
+                    } else {
+                        viewModel.signIn(id.value, password.value)
+                    }
                 }
                 Spacer(modifier = Modifier.height(24.dp))
             }

@@ -10,9 +10,11 @@ import com.gfreeca.farmin_android.domain.model.auth.req.SignInReqModel
 import com.gfreeca.farmin_android.domain.model.auth.res.SignInResModel
 import com.gfreeca.farmin_android.domain.usecase.SignInUseCase
 import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class AuthViewModel @Inject constructor(
     private val signInUseCase: SignInUseCase
 ) : ViewModel() {

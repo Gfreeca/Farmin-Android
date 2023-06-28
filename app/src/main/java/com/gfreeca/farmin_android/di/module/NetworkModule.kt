@@ -34,7 +34,7 @@ object NetworkModule {
         gsonConverterFactory: GsonConverterFactory,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://")
+            .baseUrl(BaseUrl.URL)
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()

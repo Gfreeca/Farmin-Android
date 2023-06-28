@@ -9,10 +9,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.FarminLogoIcon
 import com.gfreeca.farmin_android.design_system.LogoTextIcon
+import com.gfreeca.farmin_android.presentation.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashScreen(
+    navController: NavController,
+    viewModel: AuthViewModel
+) {
 
     LaunchedEffect("Delay") {
         delay(2000)
