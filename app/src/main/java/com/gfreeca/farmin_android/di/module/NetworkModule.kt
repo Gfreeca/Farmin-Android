@@ -1,6 +1,7 @@
 package com.gfreeca.farmin_android.di.module
 
 import com.gfreeca.farmin_android.data.remote.network.AuthAPI
+import com.gfreeca.farmin_android.data.remote.network.LoginInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,12 +19,15 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(): OkHttpClient {
+    fun provideOkhttpClient(
+        loginInterceptor: LoginInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .cookieJar(CookieJar.NO_COOKIES)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(loginInterceptor)
             .build()
     }
 
