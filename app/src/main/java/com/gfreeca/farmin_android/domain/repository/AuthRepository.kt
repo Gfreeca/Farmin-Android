@@ -10,7 +10,6 @@ interface AuthRepository {
         accessToken: String,
         refreshToken: String,
         accessExp: String,
-        refreshExp: String,
-        fcmToken: String
+        refreshExp: String
     )
 }

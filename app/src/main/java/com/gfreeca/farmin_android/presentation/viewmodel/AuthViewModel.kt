@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.gfreeca.farmin_android.domain.exception.BadRequestException
 import com.gfreeca.farmin_android.domain.exception.NotFoundException
 import com.gfreeca.farmin_android.domain.model.auth.req.SignInReqModel
-import com.gfreeca.farmin_android.domain.model.auth.res.SignInResModel
+import com.gfreeca.farmin_android.domain.usecase.SaveTokenUseCase
 import com.gfreeca.farmin_android.domain.usecase.SignInUseCase
 import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,10 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val signInUseCase: SignInUseCase
+    private val signInUseCase: SignInUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase
 ) : ViewModel() {
-    private val _signInResponse = MutableLiveData<Event<SignInResModel>>()
-    val signInResponse: LiveData<Event<SignInResModel>> get() = _signInResponse
+    private val _signInResponse = MutableLiveData<Event<Unit>>()
+    val signInResponse: LiveData<Event<Unit>> get() = _signInResponse
 
     fun signIn(id: String, password: String) = viewModelScope.launch {
         signInUseCase(
@@ -28,7 +29,13 @@ class AuthViewModel @Inject constructor(
                 password = password
             )
         ).onSuccess {
-            _signInResponse.value = Event.Success(it)
+            _signInResponse.value = Event.Success()
+            saveTokenUseCase(
+                accessToken = it.accessToken,
+                refreshToken = it.refreshToken,
+                accessExp = it.accessExp,
+                refreshExp = it.refreshExp
+            )
         }.onFailure {
             _signInResponse.value =
                 when (it) {

@@ -26,8 +26,7 @@ class AuthRepositoryImpl @Inject constructor(
         accessToken: String,
         refreshToken: String,
         accessExp: String,
-        refreshExp: String,
-        fcmToken: String
+        refreshExp: String
     ) {
         localDataSource.saveTokenInfo(
             accessToken = accessToken,
