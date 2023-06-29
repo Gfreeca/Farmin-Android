@@ -13,14 +13,15 @@ import androidx.compose.ui.unit.dp
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 
 @Composable
-fun FarminButton(text: String, onClick: () -> Unit) {
+fun FarminButton(text: String, enabled: Boolean = true, onClick: () -> Unit) {
     FarminTheme { colors, typography ->
         Button(
             onClick = onClick,
             modifier = Modifier
                 .fillMaxWidth(),
             shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = colors.BLUE500)
+            colors = ButtonDefaults.buttonColors(backgroundColor = colors.BLUE500),
+            enabled = enabled
         ) {
             Text(
                 text = text,

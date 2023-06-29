@@ -27,6 +27,10 @@ class LoginInterceptor @Inject constructor(
             }
         }
 
+        if (authDataStorage.getRefreshToken().isBlank()) {
+            return chain.proceed(request)
+        }
+
         val currentTime = LocalDateTime.now()
         val accessExp = LocalDateTime.parse(
             authDataStorage.getAccessExpiredAt().substring(0, 19)

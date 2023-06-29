@@ -1,5 +1,8 @@
 package com.gfreeca.farmin_android.presentation.ui.auth.screen
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,20 +14,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.ArrowBackIcon
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
+import com.gfreeca.farmin_android.presentation.ui.auth.AuthActivity
 import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminButton
 import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminTextField
+import com.gfreeca.farmin_android.presentation.ui.main.MainActivity
 import com.gfreeca.farmin_android.presentation.viewmodel.AuthViewModel
+import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
 
 @Composable
 fun SignInScreen(
     navController: NavController,
     viewModel: AuthViewModel
 ) {
+    val context = LocalContext.current as AuthActivity
     val id = remember {
         mutableStateOf("")
     }
@@ -36,6 +44,13 @@ fun SignInScreen(
     }
     val errorMsg = remember {
         mutableStateOf("")
+    }
+    val buttonEnabled = remember {
+        mutableStateOf(true)
+    }
+
+    observeLoginResponse(viewModel, context) {
+        context.startActivity(Intent(context, MainActivity::class.java))
     }
 
     FarminTheme { colors, typography ->
@@ -100,7 +115,11 @@ fun SignInScreen(
                 }
             }
             Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-                FarminButton(text = "로그인") {
+                FarminButton(
+                    text = "로그인",
+                    enabled = buttonEnabled.value
+                ) {
+                    buttonEnabled.value = false
                     if (id.value.isBlank() && password.value.isBlank()) {
                         isError.value = true
                         errorMsg.value = "아이디 및 비밀번호를 입력해주세요."
@@ -109,6 +128,27 @@ fun SignInScreen(
                     }
                 }
                 Spacer(modifier = Modifier.height(24.dp))
+            }
+        }
+    }
+}
+
+private fun observeLoginResponse(
+    viewModel: AuthViewModel,
+    context: AuthActivity,
+    onSuccess: () -> Unit
+) {
+    viewModel.signInResponse.observe(context) {
+        when (it) {
+            is Event.Success -> onSuccess()
+            is Event.BadRequest -> {
+                Log.d("Login", "배드 리퀘스트")
+            }
+            is Event.NotFound -> {
+                Log.d("Login", "낫 파운드")
+            }
+            else -> {
+                Log.d("Login", "몰라")
             }
         }
     }
