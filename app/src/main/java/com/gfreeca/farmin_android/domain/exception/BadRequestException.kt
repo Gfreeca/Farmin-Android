@@ -83,3 +83,7 @@ class OtherHttpException(
 class UnKnownException(
     override val message: String?
 ) : RuntimeException()
+
+class NeedLoginException(
+    override val message: String = "토큰 만료"
+) : RuntimeException()

@@ -8,6 +8,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.VisualTransformation
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 
 @Composable
@@ -15,6 +16,7 @@ fun FarminTextField(
     modifier: Modifier = Modifier,
     placeHolder: String = "",
     setText: String,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     maxLines: Int = Int.MAX_VALUE,
     onValueChange: (String) -> Unit,
@@ -31,6 +33,7 @@ fun FarminTextField(
                 placeholder = {
                     Text(text = placeHolder, style = typography.body2)
                 },
+                visualTransformation = visualTransformation,
                 maxLines = maxLines,
                 textStyle = typography.body2,
                 colors = TextFieldDefaults.outlinedTextFieldColors(

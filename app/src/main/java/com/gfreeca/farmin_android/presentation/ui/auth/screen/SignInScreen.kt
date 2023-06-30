@@ -1,8 +1,6 @@
 package com.gfreeca.farmin_android.presentation.ui.auth.screen
 
-import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.ArrowBackIcon
@@ -49,9 +48,19 @@ fun SignInScreen(
         mutableStateOf(true)
     }
 
-    observeLoginResponse(viewModel, context) {
-        context.startActivity(Intent(context, MainActivity::class.java))
-    }
+    observeLoginResponse(
+        viewModel = viewModel,
+        context = context,
+        onError = {
+            isError.value = true
+            errorMsg.value = it
+            buttonEnabled.value = true
+        },
+        onSuccess = {
+            context.startActivity(Intent(context, MainActivity::class.java))
+            context.finish()
+        }
+    )
 
     FarminTheme { colors, typography ->
         Box(
@@ -99,6 +108,7 @@ fun SignInScreen(
                     setText = password.value,
                     placeHolder = "비밀번호를 입력해주세요.",
                     maxLines = 1,
+                    visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
@@ -136,20 +146,15 @@ fun SignInScreen(
 private fun observeLoginResponse(
     viewModel: AuthViewModel,
     context: AuthActivity,
-    onSuccess: () -> Unit
+    onSuccess: () -> Unit,
+    onError: (String) -> Unit
 ) {
     viewModel.signInResponse.observe(context) {
         when (it) {
             is Event.Success -> onSuccess()
-            is Event.BadRequest -> {
-                Log.d("Login", "배드 리퀘스트")
-            }
-            is Event.NotFound -> {
-                Log.d("Login", "낫 파운드")
-            }
-            else -> {
-                Log.d("Login", "몰라")
-            }
+            is Event.BadRequest -> onError("400 배드 리퀘스트")
+            is Event.NotFound -> onError("404 낫 파운드")
+            else -> onError("알 수 없는 에러 발생")
         }
     }
 }

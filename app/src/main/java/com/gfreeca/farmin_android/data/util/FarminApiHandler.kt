@@ -45,6 +45,8 @@ class FarminApiHandler<T> {
             }
         } catch (e: SocketTimeoutException) {
             throw TimeOutException(message = e.message)
+        } catch (e: NeedLoginException) {
+            throw NeedLoginException()
         } catch (e: Exception) {
             throw UnKnownException(message = e.message)
         }

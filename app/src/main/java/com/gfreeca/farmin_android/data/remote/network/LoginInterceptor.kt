@@ -2,7 +2,7 @@ package com.gfreeca.farmin_android.data.remote.network
 
 import com.gfreeca.farmin_android.data.local.storage.AuthDataStorage
 import com.gfreeca.farmin_android.di.module.BaseUrl
-import com.gfreeca.farmin_android.domain.exception.UnauthorizedException
+import com.gfreeca.farmin_android.domain.exception.NeedLoginException
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import okhttp3.*
@@ -18,7 +18,7 @@ class LoginInterceptor @Inject constructor(
         val request = chain.request()
         val path = request.url.encodedPath
         val method = request.method
-        val ignorePath = listOf("/auth")
+        val ignorePath = listOf("/auth/sign-in","/auth/sign-up")
         val ignoreMethod = listOf("POST")
 
         ignorePath.forEachIndexed { index, s ->
@@ -40,7 +40,7 @@ class LoginInterceptor @Inject constructor(
         )
         val refreshToken = authDataStorage.getRefreshToken()
 
-        if (currentTime.isAfter(refreshExp)) throw UnauthorizedException("토큰 만료")
+        if (currentTime.isAfter(refreshExp)) throw NeedLoginException()
 
         if (currentTime.isAfter(accessExp)) {
             val client = OkHttpClient()
@@ -60,7 +60,7 @@ class LoginInterceptor @Inject constructor(
                 authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
                 authDataStorage.setAccessExpiredAt(token["accessExp"].toString().removeDot())
                 authDataStorage.setRefreshExpiredAt(token["refreshExp"].toString().removeDot())
-            } else throw UnauthorizedException("토큰 만료")
+            } else throw NeedLoginException()
         }
 
         val accessToken = authDataStorage.getAccessToken()
