@@ -42,26 +42,26 @@ class LoginInterceptor @Inject constructor(
 
         if (currentTime.isAfter(refreshExp)) throw NeedLoginException()
 
-        if (currentTime.isAfter(accessExp)) {
-            val client = OkHttpClient()
-            val refreshRequest = Request.Builder()
-                .url(BaseUrl.URL + "auth")
-                .patch(chain.request().body ?: RequestBody.create(null, byteArrayOf()))
-                .addHeader(
-                    "Refresh-Token",
-                    "Bearer $refreshToken"
-                )
-                .build()
-            val jsonParser = JsonParser()
-            val response = client.newCall(refreshRequest).execute()
-            if (response.isSuccessful) {
-                val token = jsonParser.parse(response.body!!.string()) as JsonObject
-                authDataStorage.setAccessToken(token["accessToken"].toString().removeDot())
-                authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
-                authDataStorage.setAccessExpiredAt(token["accessExp"].toString().removeDot())
-                authDataStorage.setRefreshExpiredAt(token["refreshExp"].toString().removeDot())
-            } else throw NeedLoginException()
-        }
+//        if (currentTime.isAfter(accessExp)) {
+//            val client = OkHttpClient()
+//            val refreshRequest = Request.Builder()
+//                .url(BaseUrl.URL + "auth")
+//                .patch(chain.request().body ?: RequestBody.create(null, byteArrayOf()))
+//                .addHeader(
+//                    "Refresh-Token",
+//                    "Bearer $refreshToken"
+//                )
+//                .build()
+//            val jsonParser = JsonParser()
+//            val response = client.newCall(refreshRequest).execute()
+//            if (response.isSuccessful) {
+//                val token = jsonParser.parse(response.body!!.string()) as JsonObject
+//                authDataStorage.setAccessToken(token["accessToken"].toString().removeDot())
+//                authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
+//                authDataStorage.setAccessExpiredAt(token["accessExp"].toString().removeDot())
+//                authDataStorage.setRefreshExpiredAt(token["refreshExp"].toString().removeDot())
+//            } else throw NeedLoginException()
+//        }
 
         val accessToken = authDataStorage.getAccessToken()
 
