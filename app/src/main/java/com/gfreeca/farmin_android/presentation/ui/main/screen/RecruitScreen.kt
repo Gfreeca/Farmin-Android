@@ -1,6 +1,9 @@
 package com.gfreeca.farmin_android.presentation.ui.main.screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -17,6 +20,7 @@ fun RecruitScreen(
     navController: NavController,
     viewModel: MainViewModel
 ) {
+    val itemList = viewModel.getRecruitListResponse.value!!.data!!
     val listState = rememberLazyGridState()
     val isScrolled = remember {
         mutableStateOf(false)
@@ -46,13 +50,13 @@ fun RecruitScreen(
             horizontalArrangement = Arrangement.spacedBy(15.dp),
             state = listState
         ) {
-            items(8) {
+            items(itemList.size) {
                 ListItem(
-                    imageUrl = "",
-                    title = "충주 사과 따기 모집",
-                    description = "지빈이네 사과 농장",
-                    salary = "10,000",
-                    area = "충주"
+                    imageUrl = itemList[it].thumbnail,
+                    title = itemList[it].name,
+                    description = itemList[it].farmName,
+                    salary = itemList[it].pay,
+                    area = itemList[it].location
                 )
             }
         }
