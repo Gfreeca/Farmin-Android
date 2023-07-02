@@ -3,10 +3,14 @@ package com.gfreeca.farmin_android.presentation.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -18,12 +22,16 @@ import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 import com.gfreeca.farmin_android.presentation.ui.main.component.Screen
 import com.gfreeca.farmin_android.presentation.ui.main.screen.MainScreen
 import com.gfreeca.farmin_android.presentation.ui.main.screen.RecruitScreen
+import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val mainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainViewModel.getRecruitList()
+
         setContent {
             val navController = rememberNavController()
             val navItems =
