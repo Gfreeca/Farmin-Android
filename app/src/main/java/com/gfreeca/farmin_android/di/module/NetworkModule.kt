@@ -1,5 +1,6 @@
 package com.gfreeca.farmin_android.di.module
 
+import com.gfreeca.farmin_android.data.remote.network.AnnouncementAPI
 import com.gfreeca.farmin_android.data.remote.network.AuthAPI
 import com.gfreeca.farmin_android.data.remote.network.LoginInterceptor
 import dagger.Module
@@ -54,5 +55,11 @@ object NetworkModule {
     @Singleton
     fun provideAuthService(retrofit: Retrofit): AuthAPI {
         return retrofit.create(AuthAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnnouncementService(retrofit: Retrofit): AnnouncementAPI {
+        return retrofit.create(AnnouncementAPI::class.java)
     }
 }
