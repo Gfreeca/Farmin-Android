@@ -1,10 +1,7 @@
 package com.gfreeca.farmin_android.data.remote.network
 
 import com.gfreeca.farmin_android.data.local.storage.AuthDataStorage
-import com.gfreeca.farmin_android.di.module.BaseUrl
 import com.gfreeca.farmin_android.domain.exception.NeedLoginException
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import okhttp3.*
 import java.io.IOException
 import java.time.LocalDateTime
@@ -18,12 +15,14 @@ class LoginInterceptor @Inject constructor(
         val request = chain.request()
         val path = request.url.encodedPath
         val method = request.method
-        val ignorePath = listOf("/auth/sign-in","/auth/sign-up")
-        val ignoreMethod = listOf("POST")
+        val ignorePathList = listOf("/auth/sign-in", "/auth/sign-up")
+        val ignoreMethodList = listOf("POST")
 
-        ignorePath.forEachIndexed { index, s ->
-            if (s == path && ignoreMethod[index] == method) {
-                return chain.proceed(request)
+        ignoreMethodList.forEach { ignoreMethod ->
+            ignorePathList.forEach { ignorePath ->
+                if (ignorePath == path && ignoreMethod == method) {
+                    return chain.proceed(request)
+                }
             }
         }
 

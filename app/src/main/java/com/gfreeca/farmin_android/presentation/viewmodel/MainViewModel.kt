@@ -8,9 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.gfreeca.farmin_android.domain.model.announcement.res.RecruitPostInfoModel
 import com.gfreeca.farmin_android.domain.usecase.GetRecruitListUseCase
 import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val getRecruitListUseCase: GetRecruitListUseCase
 ) : ViewModel() {
