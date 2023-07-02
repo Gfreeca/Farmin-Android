@@ -6,14 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -23,6 +22,7 @@ import com.gfreeca.farmin_android.presentation.ui.main.component.Screen
 import com.gfreeca.farmin_android.presentation.ui.main.screen.MainScreen
 import com.gfreeca.farmin_android.presentation.ui.main.screen.RecruitScreen
 import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
+import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,62 +32,90 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         mainViewModel.getRecruitList()
 
-        setContent {
-            val navController = rememberNavController()
-            val navItems =
-                listOf(Screen.Home, Screen.Recruit, Screen.Festival, Screen.Policy, Screen.Profile)
+        observeGetRecruitListResponse()
+    }
 
-            Scaffold(
-                bottomBar = {
-                    FarminTheme { colors, typography ->
-                        BottomNavigation(
-                            backgroundColor = colors.WHITE,
-                            contentColor = colors.GRAY600
-                        ) {
-                            val navBackStackEntry by navController.currentBackStackEntryAsState()
-                            val currentRoute = navBackStackEntry?.destination?.route
+    private fun observeGetRecruitListResponse() {
+        mainViewModel.getRecruitListResponse.observe(this) {
+            setContent {
+                when (it) {
+                    is Event.Success -> {
+                        val navController = rememberNavController()
+                        val navItems =
+                            listOf(
+                                Screen.Home,
+                                Screen.Recruit,
+                                Screen.Festival,
+                                Screen.Policy,
+                                Screen.Profile
+                            )
 
-                            navItems.forEach { screen ->
-                                BottomNavigationItem(
-                                    icon = {
-                                        Image(
-                                            painter = painterResource(screen.icon),
-                                            contentDescription = "Nav Item Icon"
-                                        )
-                                    },
-                                    label = {
-                                        Text(
-                                            text = screen.title,
-                                            style = typography.caption,
-                                            fontWeight = FontWeight.Medium
-                                        )
-                                    },
-                                    selected = currentRoute == screen.route,
-                                    onClick = {
-                                        navController.navigate(screen.route) {
-                                            popUpTo(navController.graph.startDestinationId)
-                                            launchSingleTop = true
+                        Scaffold(
+                            bottomBar = {
+                                FarminTheme { colors, typography ->
+                                    BottomNavigation(
+                                        backgroundColor = colors.WHITE,
+                                        contentColor = colors.GRAY600
+                                    ) {
+                                        val navBackStackEntry by navController.currentBackStackEntryAsState()
+                                        val currentRoute = navBackStackEntry?.destination?.route
+
+                                        navItems.forEach { screen ->
+                                            BottomNavigationItem(
+                                                icon = {
+                                                    Image(
+                                                        painter = painterResource(screen.icon),
+                                                        contentDescription = "Nav Item Icon"
+                                                    )
+                                                },
+                                                label = {
+                                                    Text(
+                                                        text = screen.title,
+                                                        style = typography.caption,
+                                                        fontWeight = FontWeight.Medium
+                                                    )
+                                                },
+                                                selected = currentRoute == screen.route,
+                                                onClick = {
+                                                    navController.navigate(screen.route) {
+                                                        popUpTo(navController.graph.startDestinationId)
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                selectedContentColor = colors.BLACK,
+                                                unselectedContentColor = colors.GRAY600
+                                            )
                                         }
-                                    },
-                                    selectedContentColor = colors.BLACK,
-                                    unselectedContentColor = colors.GRAY600
-                                )
+                                    }
+                                }
+                            }
+                        ) {
+                            NavHost(
+                                navController = navController,
+                                startDestination = "home",
+                                modifier = Modifier.padding(it)
+                            ) {
+                                composable(route = "home") {
+                                    MainScreen(
+                                        navController = navController,
+                                        viewModel = viewModel(LocalContext.current as MainActivity)
+                                    )
+                                }
+
+                                composable(route = "recruit") {
+                                    RecruitScreen(
+                                        navController = navController,
+                                        viewModel = viewModel(LocalContext.current as MainActivity)
+                                    )
+                                }
                             }
                         }
                     }
-                }
-            ) {
-                NavHost(
-                    navController = navController,
-                    startDestination = "home",
-                    modifier = Modifier.padding(it)
-                ) {
-                    composable(route = "home") {
-                        MainScreen(navController = navController)
+                    is Event.Loading -> {
+                        CircularProgressIndicator()
                     }
-
-                    composable(route = "recruit") {
-                        RecruitScreen(navController = navController)
+                    else -> {
+                        Text(text = it.toString())
                     }
                 }
             }

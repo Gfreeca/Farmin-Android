@@ -11,13 +11,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
 import com.gfreeca.farmin_android.presentation.ui.main.component.*
+import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: MainViewModel
 ) {
     val pagerState = rememberPagerState()
     val scrollState = rememberScrollState()
@@ -39,7 +41,7 @@ fun MainScreen(
                     //Todo : 공고 페이지로 이동
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                GridRecruitmentComponent()
+                GridRecruitmentComponent(viewModel.getRecruitListResponse.value?.data!!)
                 FarminSpacer()
                 Spacer(modifier = Modifier.height(24.dp))
                 MainVideoListHeader {

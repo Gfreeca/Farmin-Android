@@ -9,9 +9,12 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gfreeca.farmin_android.domain.model.announcement.res.RecruitPostInfoModel
 
 @Composable
-fun GridRecruitmentComponent() {
+fun GridRecruitmentComponent(
+    list: List<RecruitPostInfoModel>
+) {
     LazyVerticalGrid(
         modifier = Modifier
             .fillMaxWidth()
@@ -22,13 +25,13 @@ fun GridRecruitmentComponent() {
         horizontalArrangement = Arrangement.spacedBy(15.dp),
         userScrollEnabled = false
     ) {
-        items(4) {
+        items(list.size) {
             ListItem(
-                imageUrl = "",
-                title = "충주 사과 따기 모집",
-                description = "지빈이네 사과 농장",
-                salary = "10,000",
-                area = "충주"
+                imageUrl = list[it].thumbnail,
+                title = list[it].name,
+                description = list[it].farmName,
+                salary = list[it].pay,
+                area = list[it].location
             )
         }
     }

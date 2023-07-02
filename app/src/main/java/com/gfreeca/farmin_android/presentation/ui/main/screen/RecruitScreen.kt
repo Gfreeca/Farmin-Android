@@ -10,10 +10,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.presentation.ui.main.component.ListItem
 import com.gfreeca.farmin_android.presentation.ui.main.component.RecruitTopBar
+import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
 
 @Composable
 fun RecruitScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: MainViewModel
 ) {
     val listState = rememberLazyGridState()
     val isScrolled = remember {
