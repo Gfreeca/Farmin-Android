@@ -1,5 +1,6 @@
 package com.gfreeca.farmin_android.presentation.ui.main.screen
 
+import android.content.Intent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
@@ -7,9 +8,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
+import com.gfreeca.farmin_android.presentation.ui.detail.DetailActivity
+import com.gfreeca.farmin_android.presentation.ui.main.MainActivity
 import com.gfreeca.farmin_android.presentation.ui.main.component.*
 import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -23,6 +27,7 @@ fun MainScreen(
 ) {
     val pagerState = rememberPagerState()
     val scrollState = rememberScrollState()
+    val context = LocalContext.current as MainActivity
 
     FarminTheme { colors, _ ->
         Column(Modifier.fillMaxSize()) {
@@ -41,7 +46,9 @@ fun MainScreen(
                     //Todo : 공고 페이지로 이동
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                GridRecruitmentComponent(viewModel.getRecruitListResponse.value?.data!!)
+                GridRecruitmentComponent(viewModel.getRecruitListResponse.value?.data!!) {
+                    context.startActivity(Intent(context, DetailActivity::class.java))
+                }
                 FarminSpacer()
                 Spacer(modifier = Modifier.height(24.dp))
                 MainVideoListHeader {

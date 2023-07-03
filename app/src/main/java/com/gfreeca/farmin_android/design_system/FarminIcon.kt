@@ -1,8 +1,10 @@
 package com.gfreeca.farmin_android.design_system
 
 import androidx.compose.foundation.Image
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.gfreeca.farmin_android.R
 
@@ -74,11 +76,13 @@ fun GraySearchIcon(
 
 @Composable
 fun ArrowBackIcon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    color: Color = Color.Black
 ) {
-    Image(
+    Icon(
         painter = painterResource(id = R.drawable.ic_arrow_back),
         contentDescription = "Arrow Back Icon",
-        modifier = modifier
+        modifier = modifier,
+        tint = color
     )
 }

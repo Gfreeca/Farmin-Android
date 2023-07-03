@@ -23,14 +23,15 @@ fun ListItem(
     title: String,
     description: String,
     salary: String,
-    area: String
+    area: String,
+    onItemClick: () -> Unit
 ) {
     FarminTheme { colors, typography ->
-        Column(modifier = Modifier
-            .width(164.dp)
-            .clickable {
-
-            }) {
+        Column(
+            modifier = Modifier
+                .width(164.dp)
+                .clickable(onClick = onItemClick)
+        ) {
             Image(
                 painter = rememberAsyncImagePainter(imageUrl),
                 contentDescription = "List Item Image",
