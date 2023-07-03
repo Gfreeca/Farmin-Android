@@ -93,6 +93,18 @@ fun MapPointerIcon(
 ) {
     Image(
         painter = painterResource(id = R.drawable.ic_map_pointer),
-        contentDescription = "Map Pointer Icon"
+        contentDescription = "Map Pointer Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun EmptyContentLogo(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_empty_content_view),
+        contentDescription = "Empty Content View Logo Image",
+        modifier = modifier
     )
 }
