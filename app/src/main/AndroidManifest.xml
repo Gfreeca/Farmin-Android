@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".di.FarminApplication"
@@ -15,10 +15,15 @@
         android:theme="@style/Theme.FarminAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.ui.detail.DetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/Theme.FarminAndroid" />
+        <activity
             android:name=".presentation.ui.auth.AuthActivity"
             android:exported="true"
             android:label="@string/title_activity_auth"
-            android:theme="@style/Theme.FarminAndroid" >
+            android:theme="@style/Theme.FarminAndroid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,8 +34,7 @@
             android:name=".presentation.ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.FarminAndroid">
-        </activity>
+            android:theme="@style/Theme.FarminAndroid"></activity>
     </application>
 
 </manifest>

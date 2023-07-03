@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Farmin-Android</string>
     <string name="title_activity_auth">AuthActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>

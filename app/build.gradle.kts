@@ -79,4 +79,7 @@ dependencies {
     implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)
     implementation(Dependency.Libraries.OKHTTP)
     implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
+
+    //Coil
+    implementation(Dependency.Libraries.COIL)
 }
