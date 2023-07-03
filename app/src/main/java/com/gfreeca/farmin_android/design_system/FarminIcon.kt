@@ -86,3 +86,13 @@ fun ArrowBackIcon(
         tint = color
     )
 }
+
+@Composable
+fun MapPointerIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_map_pointer),
+        contentDescription = "Map Pointer Icon"
+    )
+}
