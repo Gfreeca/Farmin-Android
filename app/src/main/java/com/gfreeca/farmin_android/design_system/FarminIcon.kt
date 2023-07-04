@@ -163,3 +163,14 @@ fun WorkingHoursIcon(
         modifier = modifier
     )
 }
+
+@Composable
+fun FarmIntroduceIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_farm_introduce),
+        contentDescription = "Farm Introduce Icon",
+        modifier = modifier
+    )
+}
