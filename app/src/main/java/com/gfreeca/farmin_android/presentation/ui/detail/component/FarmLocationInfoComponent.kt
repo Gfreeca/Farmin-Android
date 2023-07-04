@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -18,7 +19,7 @@ fun FarmLocationInfoComponent(
     title: String
 ) {
     FarminTheme { colors, typography ->
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             MapPointerIcon()
             Spacer(modifier = Modifier.width(3.dp))
             Text(

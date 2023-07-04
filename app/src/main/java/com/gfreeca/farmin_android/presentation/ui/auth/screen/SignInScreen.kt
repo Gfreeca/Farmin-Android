@@ -129,12 +129,12 @@ fun SignInScreen(
                     text = "로그인",
                     enabled = buttonEnabled.value
                 ) {
-                    buttonEnabled.value = false
                     if (id.value.isBlank() && password.value.isBlank()) {
                         isError.value = true
                         errorMsg.value = "아이디 및 비밀번호를 입력해주세요."
                     } else {
                         viewModel.signIn(id.value, password.value)
+                        buttonEnabled.value = false
                     }
                 }
                 Spacer(modifier = Modifier.height(24.dp))
