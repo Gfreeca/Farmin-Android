@@ -108,3 +108,58 @@ fun EmptyContentLogo(
         modifier = modifier
     )
 }
+
+@Composable
+fun WorkingDateIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_working_date),
+        contentDescription = "Working Data Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun BenefitsAndWelfareIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_benefits_and_welfare),
+        contentDescription = "Working Data Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun HourlyWageIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_hourly_wage),
+        contentDescription = "Working Data Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun MajorTaskIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_major_task),
+        contentDescription = "Working Data Icon",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun WorkingHoursIcon(
+    modifier: Modifier = Modifier
+) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_working_hours),
+        contentDescription = "Working Data Icon",
+        modifier = modifier
+    )
+}
