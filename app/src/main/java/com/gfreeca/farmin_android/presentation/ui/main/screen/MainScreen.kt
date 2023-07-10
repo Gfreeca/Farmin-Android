@@ -12,7 +12,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
-import com.gfreeca.farmin_android.domain.model.announcement.res.RecruitPostInfoModel
 import com.gfreeca.farmin_android.presentation.ui.detail.DetailActivity
 import com.gfreeca.farmin_android.presentation.ui.main.MainActivity
 import com.gfreeca.farmin_android.presentation.ui.main.component.*
@@ -47,42 +46,7 @@ fun MainScreen(
                     //Todo : 공고 페이지로 이동
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                GridRecruitmentComponent(
-                    listOf(
-                        RecruitPostInfoModel(
-                            idx = 0,
-                            thumbnail = "https://",
-                            name = "윤지빈",
-                            location = "충주",
-                            pay = "20000",
-                            farmName = "지빈이네 사과농장"
-                        ),
-                        RecruitPostInfoModel(
-                            idx = 0,
-                            thumbnail = "https://",
-                            name = "윤지빈",
-                            location = "충주",
-                            pay = "20000",
-                            farmName = "지빈이네 사과농장"
-                        ),
-                        RecruitPostInfoModel(
-                            idx = 0,
-                            thumbnail = "https://",
-                            name = "윤지빈",
-                            location = "충주",
-                            pay = "20000",
-                            farmName = "지빈이네 사과농장"
-                        ),
-                        RecruitPostInfoModel(
-                            idx = 0,
-                            thumbnail = "https://",
-                            name = "윤지빈",
-                            location = "충주",
-                            pay = "20000",
-                            farmName = "지빈이네 사과농장"
-                        )
-                    )
-                ) {
+                GridRecruitmentComponent(viewModel.getRecruitListResponse.value?.data!!.subList(0,3)) {
                     context.startActivity(Intent(context, DetailActivity::class.java))
                 }
                 FarminSpacer()

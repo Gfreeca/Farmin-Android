@@ -45,7 +45,7 @@ fun GridRecruitmentComponent(
                 horizontalArrangement = Arrangement.spacedBy(15.dp),
                 userScrollEnabled = false
             ) {
-                items(4) {
+                items(list.size) {
                     ListItem(
                         imageUrl = list[it].thumbnail,
                         title = list[it].name,

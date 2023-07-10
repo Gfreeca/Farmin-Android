@@ -1,5 +1,6 @@
 package com.gfreeca.farmin_android.data.remote.datasource.announcement
 
+import com.gfreeca.farmin_android.data.remote.dto.announcement.res.RecruitDetailInfo
 import com.gfreeca.farmin_android.data.remote.dto.announcement.res.RecruitPostInfo
 import com.gfreeca.farmin_android.data.remote.network.AnnouncementAPI
 import com.gfreeca.farmin_android.data.util.FarminApiHandler
@@ -11,5 +12,10 @@ class AnnouncementDataSourceImpl @Inject constructor(
     override suspend fun getRecruitList(): List<RecruitPostInfo> =
         FarminApiHandler<List<RecruitPostInfo>>()
             .httpRequest { service.getRecruitList() }
+            .sendRequest()
+
+    override suspend fun getRecruitDetailInfo(id: Int): RecruitDetailInfo =
+        FarminApiHandler<RecruitDetailInfo>()
+            .httpRequest { service.getRecruitDetailInfo(announcementId = id) }
             .sendRequest()
 }
