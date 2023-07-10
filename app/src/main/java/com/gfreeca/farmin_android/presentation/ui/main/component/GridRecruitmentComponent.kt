@@ -15,7 +15,7 @@ import com.gfreeca.farmin_android.domain.model.announcement.res.RecruitPostInfoM
 @Composable
 fun GridRecruitmentComponent(
     list: List<RecruitPostInfoModel>,
-    onItemClick: () -> Unit
+    onItemClick: (index: Int) -> Unit
 ) {
     FarminTheme { colors, typography ->
         if (list.isEmpty()) {
@@ -52,7 +52,9 @@ fun GridRecruitmentComponent(
                         description = list[it].farmName,
                         salary = list[it].pay,
                         area = list[it].location,
-                        onItemClick = onItemClick
+                        onItemClick = {
+                            onItemClick(list[it].idx)
+                        }
                     )
                 }
             }

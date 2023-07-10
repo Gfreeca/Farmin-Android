@@ -46,8 +46,10 @@ fun MainScreen(
                     //Todo : 공고 페이지로 이동
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                GridRecruitmentComponent(viewModel.getRecruitListResponse.value?.data!!.subList(0,3)) {
-                    context.startActivity(Intent(context, DetailActivity::class.java))
+                GridRecruitmentComponent(viewModel.getRecruitListResponse.value?.data!!) {
+                    val intent = Intent(context, DetailActivity::class.java)
+                    intent.putExtra("idx", it)
+                    context.startActivity(intent)
                 }
                 FarminSpacer()
                 Spacer(modifier = Modifier.height(24.dp))
