@@ -6,19 +6,28 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.gfreeca.farmin_android.design_system.*
 import com.gfreeca.farmin_android.design_system.theme.FarminTheme
+import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminButton
 import com.gfreeca.farmin_android.presentation.ui.detail.component.DetailBannerComponent
 import com.gfreeca.farmin_android.presentation.ui.detail.component.DetailHeaderComponent
 import com.gfreeca.farmin_android.presentation.ui.detail.component.FarmDetailInfoItem
 import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
 import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +47,11 @@ class DetailActivity : ComponentActivity() {
                     val response = it.data!!
 
                     setContent {
+                        val singapore = LatLng(1.35, 103.87)
+                        val cameraPositionState = rememberCameraPositionState {
+                            position = CameraPosition.fromLatLngZoom(singapore, 10f)
+                        }
+
                         FarminTheme { colors, typography ->
                             LazyColumn(modifier = Modifier.fillMaxSize()) {
                                 item {
@@ -117,13 +131,36 @@ class DetailActivity : ComponentActivity() {
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(11.dp))
-                                    Text(
-                                        text = "장소",
-                                        style = typography.label1,
-                                        fontWeight = FontWeight.Bold,
-                                        color = colors.GRAY800
-                                    )
-                                    Spacer(modifier = Modifier.height(11.dp))
+                                    Column(
+                                        Modifier
+                                            .padding(horizontal = 16.dp)
+                                    ) {
+                                        Text(
+                                            text = "장소",
+                                            style = typography.label1,
+                                            fontWeight = FontWeight.Bold,
+                                            color = colors.GRAY800
+                                        )
+                                        Spacer(modifier = Modifier.height(11.dp))
+                                        GoogleMap(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(200.dp)
+                                                .clip(RoundedCornerShape(10.dp)),
+                                            cameraPositionState = cameraPositionState
+                                        ) {
+                                            Marker(
+                                                state = MarkerState(position = singapore),
+                                                title = response.location,
+                                                snippet = "Marker in ${response.location}"
+                                            )
+                                        }
+                                        Spacer(modifier = Modifier.height(26.dp))
+                                        FarminButton(text = "지원하기") {
+                                            //Todo 지원하기
+                                        }
+                                        Spacer(modifier = Modifier.height(16.dp))
+                                    }
                                 }
                             }
                         }
