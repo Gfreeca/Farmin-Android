@@ -1,9 +1,12 @@
 package com.gfreeca.farmin_android.presentation.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,6 +23,8 @@ import com.gfreeca.farmin_android.presentation.ui.auth.component.FarminButton
 import com.gfreeca.farmin_android.presentation.ui.detail.component.DetailBannerComponent
 import com.gfreeca.farmin_android.presentation.ui.detail.component.DetailHeaderComponent
 import com.gfreeca.farmin_android.presentation.ui.detail.component.FarmDetailInfoItem
+import com.gfreeca.farmin_android.presentation.ui.main.MainActivity
+import com.gfreeca.farmin_android.presentation.viewmodel.ApplicationViewModel
 import com.gfreeca.farmin_android.presentation.viewmodel.MainViewModel
 import com.gfreeca.farmin_android.presentation.viewmodel.util.Event
 import com.google.android.gms.maps.model.CameraPosition
@@ -33,11 +38,26 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailActivity : ComponentActivity() {
     private val mainViewModel by viewModels<MainViewModel>()
+    private val applicationViewModel by viewModels<ApplicationViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel.getRecruitDetail(intent.getIntExtra("idx", 0))
         observeDetailResponse()
+        observeFarmApplicationResponse()
+    }
+
+    private fun observeFarmApplicationResponse() {
+        applicationViewModel.applicationFarmResponse.observe(this) {
+            Toast.makeText(
+                this@DetailActivity,
+                when (it) {
+                    is Event.Success -> "지원을 완료하였습니다."
+                    is Event.NotFound -> "농장을 찾을 수 없습니다."
+                    else -> "알 수 없는 에러가 발생하였습니다."
+                }, Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun observeDetailResponse() {
@@ -157,7 +177,12 @@ class DetailActivity : ComponentActivity() {
                                         }
                                         Spacer(modifier = Modifier.height(26.dp))
                                         FarminButton(text = "지원하기") {
-                                            //Todo 지원하기
+                                            applicationViewModel.applicationFarm(
+                                                idx = intent.getIntExtra(
+                                                    "idx",
+                                                    0
+                                                )
+                                            )
                                         }
                                         Spacer(modifier = Modifier.height(16.dp))
                                     }
@@ -166,7 +191,40 @@ class DetailActivity : ComponentActivity() {
                         }
                     }
                 }
-                else -> {}
+                else -> {
+                    setContent {
+                        FarminTheme { colors, typography ->
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                EmptyContentLogo()
+                                Spacer(modifier = Modifier.height(24.dp))
+                                Text(
+                                    text = "알 수 없는 에러가 발생했습니다.",
+                                    style = typography.body1,
+                                    color = colors.GRAY600
+                                )
+                                Spacer(modifier = Modifier.height(5.dp))
+                                Text(
+                                    text = "메인페이지로 돌아가기.",
+                                    style = typography.body1,
+                                    color = colors.GRAY600,
+                                    modifier = Modifier.clickable {
+                                        startActivity(
+                                            Intent(
+                                                this@DetailActivity,
+                                                MainActivity::class.java
+                                            )
+                                        )
+                                        finish()
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
